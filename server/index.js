@@ -5,7 +5,7 @@ const http = require('http').Server(app)
 const PORT = process.env.PORT || 4000
 const socketIO = require('socket.io')(http, {
   cors: {
-    origin: 'https://chat-app-educalok.vercel.app:${PORT}`'
+    origin: [`http://localhost:3000`, `https://chat-app-educalok.vercel.app`]
   }
 })
 
