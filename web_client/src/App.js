@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import socketIO from 'socket.io-client'
 import { ChakraProvider } from '@chakra-ui/react'
 
-import './styles/globals.css';
+import './styles/globals.css'
 import Chat from './Pages/Chat'
 import Home from './Pages/Home'
 
-const socket = socketIO.connect('http://localhost:4000')
+//const socket = socketIO.connect('http://localhost:4000')
+const socket = socketIO.connect(
+  'https://chat-app-production-acc1.up.railway.app'
+)
 function App () {
   return (
     <ChakraProvider>
