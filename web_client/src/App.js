@@ -3,8 +3,8 @@ import socketIO from 'socket.io-client'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import './styles/globals.css';
-import Chat from './Chat'
-import Home from './Home'
+import Chat from './Pages/Chat'
+import Home from './Pages/Home'
 
 const socket = socketIO.connect('http://localhost:4000')
 function App () {

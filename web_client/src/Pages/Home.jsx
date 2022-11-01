@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   VStack,
   Flex,
@@ -12,9 +13,23 @@ import {
   Heading
 } from '@chakra-ui/react'
 
-import './styles/Home.module.css'
+import '../styles/Home.module.css'
 
-function Home () {
+const Home = ({ socket }) => {
+  const navigate = useNavigate()
+  const [userName, setUserName] = useState('')
+  const [room, setRoom] = useState('')
+
+  const enterChat = e => {
+    e.preventDefault()
+    if (room !== '' && userName !== '') {
+      localStorage.setItem('userName', userName)
+      socket.emit('newUser', { userName, socketID: socket.id })
+      navigate('/chat')
+    } else {
+      alert('Please enter a username and a room name')
+    }
+  }
   return (
     <Box h='50vh'>
       <Flex align={'center'} justify={'center'} bg='blackAlpha.200' h='100vh'>
@@ -36,9 +51,21 @@ function Home () {
             <VStack>
               <Grid templateColumns='1fr 3fr' alignItems='center' gap={1}>
                 <FormLabel>Username</FormLabel>
-                <Input mt='2' placeholder='Username' size='md' />
+                <Input
+                  name='username'
+                  mt='2'
+                  placeholder='Username'
+                  size='md'
+                  onChange={e => setUserName(e.target.value)}
+                />
                 <FormLabel>Room</FormLabel>
-                <Input mt='2' placeholder='Room' size='md' />
+                <Input
+                  name='room'
+                  mt='2'
+                  placeholder='Room'
+                  size='md'
+                  onChange={e => setRoom(e.target.value)}
+                />
               </Grid>
             </VStack>
             <Center mt='2'>
@@ -48,6 +75,7 @@ function Home () {
                 fontWeight='bold'
                 fontSize='xl'
                 _hover={{ bg: 'teal.800' }}
+                onClick={enterChat}
               >
                 Enter
               </Button>
