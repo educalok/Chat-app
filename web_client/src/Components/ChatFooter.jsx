@@ -4,11 +4,9 @@ const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState('')
 
   const handleTyping = e => {
-    console.log(e.target.value)
-    if (e.target.value != '') {
+    if (e.target.value !== '') {
       socket.emit('typing', `${localStorage.getItem('userName')} is typing`)
     } else {
-      console.log('ENTRE ACA')
       socket.emit('typing', '')
     }
   }

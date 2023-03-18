@@ -13,7 +13,6 @@ app.use(cors())
 let users = []
 
 socketIO.on('connection', socket => {
-  console.log(`⚡: ${socket.id} user just connected!`)
   socket.on('message', data => {
     socketIO.emit('messageResponse', data)
   })
@@ -26,7 +25,6 @@ socketIO.on('connection', socket => {
   })
 
   socket.on('disconnect', () => {
-    console.log('🔥: A user disconnected')
     users = users.filter(user => user.socketID !== socket.id)
     socketIO.emit('newUserResponse', users)
     socket.disconnect()
