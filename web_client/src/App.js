@@ -7,9 +7,7 @@ import Chat from './Pages/Chat'
 import Home from './Pages/Home'
 
 //const socket = socketIO.connect('http://localhost:4000')
-const socket = socketIO.connect(
-  'https://chat-app-production-acc1.up.railway.app'
-)
+const socket = socketIO.connect('utmost-baseball-production.up.railway.app')
 function App () {
   return (
     <ChakraProvider>
