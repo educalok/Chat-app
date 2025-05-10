@@ -117,3 +117,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Build directories
+/build/
+/dist/
+/out/
+/node_modules/
+web_client/build/
